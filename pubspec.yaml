@@ -14,4 +14,4 @@ dev_dependencies:
   test: ^1.25.8
 
 executables: 
-  smaller_png: bin/smaller_png.dart
+  smaller_png: smaller_png

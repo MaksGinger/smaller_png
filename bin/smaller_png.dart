@@ -10,10 +10,16 @@ const colorsOptionName = 'colors';
 
 int main(List<String> arguments) {
   final parser = ArgParser()
-    ..addOption(inputOptionName,
-        mandatory: true, abbr: 'i', help: 'Input PNG-file path')
-    ..addOption(outputOptionName,
-        mandatory: true, abbr: 'o', help: 'Path to save compressed PNG-file')
+    ..addOption(
+      inputOptionName,
+      abbr: 'i',
+      help: 'Input PNG-file path',
+    )
+    ..addOption(
+      outputOptionName,
+      abbr: 'o',
+      help: 'Path to save compressed PNG-file',
+    )
     ..addOption(
       colorsOptionName,
       abbr: 'c',
@@ -27,6 +33,13 @@ int main(List<String> arguments) {
     final inputPath = argResults['input'];
     final outputPath = argResults['output'];
     final colorsStr = argResults['colors'];
+
+    if (inputPath == null || outputPath == null) {
+      stderr.writeln('Input and Output file paths must be specified.');
+      print('\nUsage:');
+      print(parser.usage);
+      return 1;
+    }
 
     final colorDepth = ColorDepth.fromString(colorsStr);
 
